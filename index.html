@@ -4,30 +4,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/reset.css">
     <title>Lista de Preços</title>
+
 </head>
 <body>
     <header>
         <h1>Lista de preços</h1>
     </header>
     <main>
-        <div class="titulo">
-            <h2>Mercado Produto e Preço</h2>
-        </div>
         <div class="container">
             <div>
-                <label for="">Loja</label>
+                <label for="loja">Loja</label>
                 <input type="text" id="loja" placeholder="Nome da loja">
             </div>
             <div>
-                <label for="">Produto</label>
+                <label for="produto">Produto</label>
                 <input type="text" id="produto" placeholder="Nome do produto">
             </div>
-            <div>
-                <label for="">Preço</label>
+            <div class="">
+                <label for="preco">Preço</label>
                 <input type="text" id="preco" placeholder="Preço do produto">
             </div>
+            <button>Salvar</button>
+        </div>
 
+        <div class="lista">
+            <table border="1">
+                <thead>
+                    <th>ID</th>
+                    <th>Loja</th>
+                    <th>Produto</th>
+                    <th>Preço</th>
+                    <tbody id="tbody"></tbody>
+
+                </thead>
+            </table>
         </div>
     </main>
 </body>
