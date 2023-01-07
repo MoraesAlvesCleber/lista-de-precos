@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +9,9 @@
     <link rel="stylesheet" href="/css/reset.css">
     <title>Lista de Preços</title>
 
+    <script src="/Js/main.js"></script>
 </head>
+
 <body>
     <header>
         <h1>Lista de preços</h1>
@@ -27,7 +30,7 @@
                 <label for="preco">Preço</label>
                 <input type="text" id="preco" placeholder="Preço do produto">
             </div>
-            <button>Salvar</button>
+            <button onclick="produto.salvar()">Salvar</button>
         </div>
 
         <div class="lista">
@@ -37,11 +40,15 @@
                     <th>Loja</th>
                     <th>Produto</th>
                     <th>Preço</th>
-                    <tbody id="tbody"></tbody>
-
                 </thead>
+                <tbody id="tbody">
+
+                </tbody>
+
             </table>
         </div>
     </main>
+    
 </body>
+
 </html>

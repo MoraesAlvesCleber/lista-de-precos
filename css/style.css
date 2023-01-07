@@ -1,24 +1,27 @@
-html{
-    
-        background: radial-gradient(farthest-corner at right top,#9d8ed8, #06182D);
-        height: 100%;
-        font-family: 'Roboto', cursive;
+html {
+
+    background: radial-gradient(farthest-corner at right top, #9d8ed8, #06182D);
+    height: 100%;
+    font-family: 'Roboto', cursive;
 }
 
-.container{
+.container {
     display: grid;
     justify-items: end;
-    justify-content: center
+    justify-content: center;
 }
-h1{
+
+h1 {
     font-size: 48px;
     text-align: center;
     color: white;
 }
-h2{
+
+h2 {
     font-size: 28px;
     text-align: center;
 }
-.lista{
+
+.lista {
     display: grid;
 }
