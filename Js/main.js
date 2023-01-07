@@ -10,10 +10,37 @@ class Produto {
         let produto = this.lerDados();
 
         if(this.validaCampos(produto)) {
-            alert("Salvar");
+            this.adicionar(produto);
+             
         }
         
-        console.log(produto);
+         this.listaTabela();
+    }
+
+    listaTabela(){
+        let tbody = document.getElementById("tbody");
+        tbody.innerText = "";
+
+        for(let i= 0 ; i < this.arrayProdutos.length; i++) {    
+            let tr = tbody.insertRow();
+
+            let td_id = tr.insertCell();
+            let td_loja = tr.insertCell();
+            let td_produto = tr.insertCell();
+            let td_preco = tr.insertCell();
+
+            td_id.innerText = this.arrayProdutos[i].id;
+            td_loja.innerText = this.arrayProdutos[i].nomeDaLoja;
+            td_produto.innerText = this.arrayProdutos[i].nomeDoProduto;
+            td_preco.innerText = this.arrayProdutos[i].preco;
+
+            
+        }
+    }
+
+    adicionar(produto) {
+        this.arrayProdutos.push(produto);
+        this.id++;
     }
 
     lerDados() {
@@ -44,8 +71,7 @@ class Produto {
         }
         return true;
     }
-    Excluir() {
-        alert('Excluir produto')
-    }
+
+   
 }
 var produto = new Produto();
