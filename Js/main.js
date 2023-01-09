@@ -3,24 +3,24 @@ class Produto {
     constructor() {
         this.id = 1;
         this.arrayProdutos = [];
-       
-
+        this.editId = null;
     }
-    
 
     salvar() {
         let produto = this.lerDados();
 
         if (this.validaCampos(produto)) {
-            this.adicionar(produto);
-
+            if (this.editId == null) {
+                this.adicionar(produto);
+            } else {
+                this.atualizar(this.editId, produto);
+            }
         }
 
         this.listaTabela();
         this.apagar();
-        
+
     }
-    
 
     listaTabela() {
         let tbody = document.getElementById("tbody");
@@ -33,7 +33,7 @@ class Produto {
             let td_loja = tr.insertCell();
             let td_produto = tr.insertCell();
             let td_preco = tr.insertCell();
-            let td_apagar = tr.insertCell();
+            let td_acoes = tr.insertCell();
 
 
             td_id.innerText = this.arrayProdutos[i].id;
@@ -43,35 +43,43 @@ class Produto {
 
             td_id.classList.add("center");
 
-            let imgEdit = document.createElement('img');
-            imgEdit.src = 'img/delete.svg';
-            imgEdit.setAttribute('onclick', 'produto.deletar(' + this.arrayProdutos[i].id + ')');
+            let imgEdit = document.createElement("img");
+            imgEdit.src = 'img/edit.svg';
+            imgEdit.setAttribute('onclick', 'produto.editar(' + JSON.stringify(this.arrayProdutos[i]) + ')');
 
-            td_apagar.appendChild(imgEdit);
-            
+            let imgDel = document.createElement('img');
+            imgDel.src = 'img/delete.svg';
+            imgDel.setAttribute('onclick', 'produto.deletar(' + this.arrayProdutos[i].id + ')');
 
-            
+            td_acoes.appendChild(imgEdit);
+            td_acoes.appendChild(imgDel);
+            imgEdit.style.height = '24px';
         }
-        
     }
-   
 
     adicionar(produto) {
+        produto.preco = parseInt(produto.preco);
         this.arrayProdutos.push(produto);
         this.id++;
-        const itens = []
-
-        const itemAtual = {
-            'nomeDaLoja' : produto.nomeDaLoja,
-            'nomeDoProduto' : produto.nomeDoProduto,
-            'preco' : produto.preco
-        }
-        itens.push(itemAtual);
-
-        localStorage.setItem('item',JSON.stringify(itens))
-         
-      
     }
+    atualizar(id, produto){
+        for (let i = 0; i < this.arrayProdutos.length; i++) {
+            if (this.arrayProdutos[i].id === id){
+                this.arrayProdutos[i].nomeDaLoja = produto.nomeDaLoja;
+                this.arrayProdutos[i].nomeDoProduto = produto.nomeDoProduto;
+                this.arrayProdutos[i].preco = produto.preco;
+            }
+    }
+}
+    editar(dados) {
+        this.editId = dados.id;
+        document.getElementById('loja').value = dados.nomeDaLoja;
+        document.getElementById('produto').value = dados.nomeDoProduto;
+        document.getElementById('preco').value = dados.preco;
+
+        document.getElementById('salvar_atualizar').innerText = 'Atualizar';
+    }
+
 
     lerDados() {
         let produto = {}
@@ -106,16 +114,23 @@ class Produto {
         document.getElementById('produto').value = '';
         document.getElementById('preco').value = '';
 
+        document.getElementById('salvar_atualizar').innerText = 'Salvar';
+        this.editId = null;
+
     }
     deletar(id) {
-        let tbody = document.getElementById("tbody");
-        for (let i = 0; i < this.arrayProdutos.length; i++) {
-            if (this.arrayProdutos[i].id == id) {
-                this.arrayProdutos.splice(i, 1);
-                tbody.deleteRow(i);
+        if (confirm('Deseja realmente deletar o produto ' + id + ' ?')) {
+            let tbody = document.getElementById("tbody");
+            for (let i = 0; i < this.arrayProdutos.length; i++) {
+                if (this.arrayProdutos[i].id == id) {
+                    this.arrayProdutos.splice(i, 1);
+                    tbody.deleteRow(i);
+                }
+
             }
         }
 
     }
 }
+
 var produto = new Produto();
