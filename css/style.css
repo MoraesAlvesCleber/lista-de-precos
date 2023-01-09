@@ -9,19 +9,27 @@ html {
     display: grid;
     justify-items: end;
     justify-content: center;
+    grid-row-gap: 20px;
 }
 
 h1 {
     font-size: 48px;
     text-align: center;
     color: white;
+    text-shadow: black 0.1em 0.1em 0.2em
+    
 }
 
-h2 {
-    font-size: 28px;
+ 
+
+.center{
     text-align: center;
 }
-
+.button{
+    margin-bottom: 30px;
+}
 .lista {
     display: grid;
+    background-color: rgb(150, 173, 220);
 }
+

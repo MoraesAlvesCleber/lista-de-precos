@@ -30,7 +30,10 @@
                 <label for="preco">Preço</label>
                 <input type="text" id="preco" placeholder="Preço do produto">
             </div>
-            <button onclick="produto.salvar()">Salvar</button>
+            <div class="button">
+                <button onclick="produto.salvar()">Salvar</button>
+                <button onclick="produto.apagar()">Apagar</button>
+            </div>
         </div>
 
         <div class="lista">
@@ -40,6 +43,7 @@
                     <th>Loja</th>
                     <th>Produto</th>
                     <th>Preço</th>
+                    <th>Apagar</th>
                 </thead>
                 <tbody id="tbody">
 
